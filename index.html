@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VaultKey | Password Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>VaultKey</h1>
+      <p>Local Password Generator & Manager</p>
+    </header>
+
+    <div class="grid-layout">
+      <!-- Left Column: Add & Generate -->
+      <section class="card form-section">
+        <h2>Add New Credential</h2>
+        <form id="passwordForm">
+          <div class="input-group">
+            <label for="site">Website / App Name</label>
+            <input type="text" id="site" placeholder="e.g., GitHub" required>
+          </div>
+
+          <div class="input-group">
+            <label for="username">Username / Email</label>
+            <input type="text" id="username" placeholder="e.g., alex@example.com" required>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="Enter or generate password" required>
+              <button type="button" id="toggleInputVis" class="icon-btn" title="Show/Hide">👁️</button>
+            </div>
+            <div class="strength-meter">
+              <div id="strengthBar" class="strength-bar"></div>
+            </div>
+            <small id="strengthText" class="strength-text">Strength: None</small>
+          </div>
+
+          <!-- Generator Box -->
+          <div class="generator-box">
+            <div class="gen-header">
+              <span>Password Generator</span>
+              <span id="lengthVal">16 chars</span>
+            </div>
+            <input type="range" id="lengthSlider" min="8" max="32" value="16">
+            <div class="checkboxes">
+              <label><input type="checkbox" id="incUpper" checked> A-Z</label>
+              <label><input type="checkbox" id="incLower" checked> a-z</label>
+              <label><input type="checkbox" id="incNumbers" checked> 0-9</label>
+              <label><input type="checkbox" id="incSymbols" checked> !@#$</label>
+            </div>
+            <button type="button" id="generateBtn" class="btn secondary-btn">Generate Strong Password</button>
+          </div>
+
+          <button type="submit" class="btn primary-btn">Save Credential</button>
+        </form>
+      </section>
+
+      <!-- Right Column: Saved Passwords -->
+      <section class="card vault-section">
+        <div class="vault-header">
+          <h2>Saved Vault (<span id="vaultCount">0</span>)</h2>
+          <input type="text" id="searchInput" placeholder="Search site or username...">
+        </div>
+        
+        <div id="passwordList" class="password-list">
+          <!-- Saved items will be injected here via JS -->
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
